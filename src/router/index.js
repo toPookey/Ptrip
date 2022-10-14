@@ -23,6 +23,22 @@ routes: [
         path:'/order',
         component: () =>  import("@/Views/order/order.vue")
     },
+    {
+        path:'/city',
+        component: () =>  import("@/Views/city/city.vue"),
+        // meta: {
+        //     hideTabBar: true
+        // }
+
+    },
+    {
+        path:'/search',
+        component: () =>  import("@/Views/search/search.vue")
+    },
+    {
+        path:'/detail',
+        component: () =>  import("@/Views/detail/detail.vue")
+    },
 ]
 
 

@@ -1,12 +1,21 @@
 <script setup>
 
-import {ref} from "vue"
-
+import {ref, watch} from "vue"
+import { useRoute } from "vue-router";
 import tabbarData from "@/assets/data/tabbar"
 import getAssetURL from "@/utils/load_assets"
 
 
 let currentIndex = ref(0)
+//监听路由改变时对应的索引的改变(修复bug)
+const route = useRoute()
+
+watch(route, (newValue) => {
+
+    const index = tabbarData.findIndex(item  =>  item.path === newValue.path)
+    if (index === -1) return
+    currentIndex.value =index
+})
 
 
 
@@ -18,7 +27,7 @@ let currentIndex = ref(0)
 
 <template>
   <div class="tab-bar-01">
-    <van-tabbar v-model="currentIndex" active-color="#ff9854">
+    <van-tabbar v-model="currentIndex" active-color="#ff9854" route>
   <van-tabbar-item 
  
    v-for="(item ,index) in tabbarData " :key="item"
